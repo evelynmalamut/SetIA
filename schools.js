@@ -138,7 +138,7 @@ function checkClickedSetpt1() {
         $(this).toggleClass('highlight');
         var selectedCard = findCardById(id);
         selectedCard.toggleHighlight();
-        console.log(selectedCard.index);
+        //console.log(selectedCard.index);
     });
 }
 
@@ -155,7 +155,7 @@ function findCardById(id) {
 function checkClickedSetpt2() {
     for (var j = 0; j < playingCards.length; j++) {
         if (playingCards[j].highlight == true) {
-            console.log(playingCards[j].index);
+            //console.log(playingCards[j].index);
             userCards.push(playingCards[j].index)
         }
     }
@@ -163,21 +163,22 @@ function checkClickedSetpt2() {
     var userCardsString = userCards.join();
     for (var i= 0; i < setCardsIndices.length; i++) {
         if (setCardsIndices[i].join() == userCardsString) {
-            console.log("That's a set!");
-            //put in function to replace card (need to set index of cards in set to index of replacement card and remove set card from playing cards)
-            for (var k = 0; k < 3; k++) {
-                var replacementCard = deck[Math.floor(Math.random() * deck.length)];
-                var replacementCardDeckIndex = deck.indexOf(replacementCard);
-                playingCards.push(replacementCard);
-                playingCards.push(replacementCard);
-                replacementCard.index = setCardsIndices[i];
-                document.getElementById(i).innerHTML = replacementCard.image();
-                deck.splice(replacementCardDeckIndex, 1);
+            //console.log("That's a set!");
             }
-            return true
         }
+    for (var k = 0; k < 3; k++) {
+        var replacementCard = deck[Math.floor(Math.random() * deck.length)];
+        var replacementCardDeckIndex = deck.indexOf(replacementCard);
+        playingCards.splice(userCards[k], 1);
+        replacementCard.index = userCards[k];
+        replacementCard.highlight = false;
+        $("#userCards[k]").toggleClass('highlight');
+        playingCards.push(replacementCard);
+        console.log(userCards[k]);
+        document.getElementById(userCards[k]).innerHTML = replacementCard.image();
+        deck.splice(replacementCardDeckIndex, 1);
     }
-    console.log("nope!")
+    console.log("nope!");
 }
 
 
