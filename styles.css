@@ -1,0 +1,13 @@
+td {
+    border: 1px solid black;
+    border-radius: 10px;
+    background: #ffffff;
+    padding: 5px;
+    width: 74px;
+    height: 100px;
+    border-collapse: separate;
+}
+
+.highlight {
+    box-shadow: 0 0 20px #FFD700;
+}
