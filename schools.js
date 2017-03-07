@@ -138,7 +138,7 @@ function checkClickedSetpt1() {
         $(this).toggleClass('highlight');
         var selectedCard = findCardById(id);
         selectedCard.toggleHighlight();
-        //console.log(selectedCard.index);
+        console.log(selectedCard.index);
     });
 }
 
@@ -163,7 +163,7 @@ function checkClickedSetpt2() {
     var userCardsString = userCards.join();
     for (var i= 0; i < setCardsIndices.length; i++) {
         if (setCardsIndices[i].join() == userCardsString) {
-            //console.log("That's a set!");
+            console.log("That's a set!");
             }
         }
     for (var k = 0; k < 3; k++) {
@@ -172,17 +172,33 @@ function checkClickedSetpt2() {
         playingCards.splice(userCards[k], 1);
         replacementCard.index = userCards[k];
         replacementCard.highlight = false;
-        $("#userCards[k]").toggleClass('highlight');
         playingCards.push(replacementCard);
         console.log(userCards[k]);
         document.getElementById(userCards[k]).innerHTML = replacementCard.image();
         deck.splice(replacementCardDeckIndex, 1);
     }
-    console.log("nope!");
+    resetAllHighlights();
+    console.log("nope!")
 }
 
 
-//get rid of cards if it's a set
+function resetAllHighlights() {
+    for(var c = 0; c < 14; c++) {
+        $('#' + c).removeClass('highlight');
+    }
+}
 
+//fade in and fade out cards
 
-//figure out how to do without buttons
+//get a set and cards blink yellow and confetti
+
+//if dont get set then call them stupid butt (and blink red)
+
+//dont get rid of cards if not a set
+
+//get rid of buttons
+
+//add instructions
+
+//write up IA
+
