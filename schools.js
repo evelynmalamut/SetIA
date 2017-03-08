@@ -164,26 +164,26 @@ function checkClickedSetpt2() {
     for (var i= 0; i < setCardsIndices.length; i++) {
         if (setCardsIndices[i].join() == userCardsString) {
             console.log("That's a set!");
+            for (var k = 0; k < 3; k++) {
+                var replacementCard = deck[Math.floor(Math.random() * deck.length)];
+                var replacementCardDeckIndex = deck.indexOf(replacementCard);
+                playingCards.splice(userCards[k], 1);
+                replacementCard.index = userCards[k];
+                replacementCard.highlight = false;
+                playingCards.push(replacementCard);
+                console.log(userCards[k]);
+                document.getElementById(userCards[k]).innerHTML = replacementCard.image();
+                deck.splice(replacementCardDeckIndex, 1);
+            }
             }
         }
-    for (var k = 0; k < 3; k++) {
-        var replacementCard = deck[Math.floor(Math.random() * deck.length)];
-        var replacementCardDeckIndex = deck.indexOf(replacementCard);
-        playingCards.splice(userCards[k], 1);
-        replacementCard.index = userCards[k];
-        replacementCard.highlight = false;
-        playingCards.push(replacementCard);
-        console.log(userCards[k]);
-        document.getElementById(userCards[k]).innerHTML = replacementCard.image();
-        deck.splice(replacementCardDeckIndex, 1);
-    }
     resetAllHighlights();
     console.log("nope!")
 }
 
 
 function resetAllHighlights() {
-    for(var c = 0; c < 14; c++) {
+    for(var c = 0; c < playingCards.length; c++) {
         $('#' + c).removeClass('highlight');
     }
 }
@@ -193,8 +193,6 @@ function resetAllHighlights() {
 //get a set and cards blink yellow and confetti
 
 //if dont get set then call them stupid butt (and blink red)
-
-//dont get rid of cards if not a set
 
 //get rid of buttons
 
