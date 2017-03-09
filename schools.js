@@ -86,9 +86,9 @@ function add3More () {
         deck.splice(chosenCardIndex, 1);
     }
     $("#3CardButton").hide('fast');
+    checkSet_pt1();
 }
 
-//$(document).ready(
 function checkSet_pt1() {
             for (var i = 0; i < playingCards.length - 2; i++) {
                 for (var j = i + 1; j < playingCards.length - 1; j++) {
@@ -98,6 +98,10 @@ function checkSet_pt1() {
                 }
             }
         }
+
+$(document).ready(function() {
+    checkSet_pt1()
+});
 
 function checkSet_pt2(a,b,c) {
         if (!((a.number == b.number) && (b.number == c.number) ||
@@ -131,7 +135,8 @@ function checkSet_pt2(a,b,c) {
 var setCardsIndices = [];
 var userCards = [];
 
-//$(document).ready(
+
+
 function checkClickedSetpt1() {
     $(".cardCell").click(function () {
         var id = parseInt(this.id);
@@ -141,7 +146,6 @@ function checkClickedSetpt1() {
         console.log(selectedCard.index);
     });
 }
-
 
 function findCardById(id) {
     for (var i = 0; i < playingCards.length; i++) {
@@ -155,7 +159,6 @@ function findCardById(id) {
 function checkClickedSetpt2() {
     for (var j = 0; j < playingCards.length; j++) {
         if (playingCards[j].highlight == true) {
-            //console.log(playingCards[j].index);
             userCards.push(playingCards[j].index)
         }
     }
@@ -199,4 +202,6 @@ function resetAllHighlights() {
 //add instructions
 
 //write up IA
+
+//when you get to end of deck (say end of game)
 
