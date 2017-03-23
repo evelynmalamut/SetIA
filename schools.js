@@ -164,24 +164,24 @@ function checkClickedSetpt2() {
     }
     userCards.sort(function(a, b){return a-b});
     var userCardsString = userCards.join();
-    for (var i= 0; i < setCardsIndices.length; i++) {
-        if (setCardsIndices[i].join() == userCardsString) {
-            console.log("That's a set!");
-            for (var k = 0; k < 3; k++) {
-                var replacementCard = deck[Math.floor(Math.random() * deck.length)];
-                var replacementCardDeckIndex = deck.indexOf(replacementCard);
-                playingCards.splice(userCards[k], 1);
-                replacementCard.index = userCards[k];
-                replacementCard.highlight = false;
-                playingCards.push(replacementCard);
-                console.log(userCards[k]);
-                document.getElementById(userCards[k]).innerHTML = replacementCard.image();
-                deck.splice(replacementCardDeckIndex, 1);
-            }
+        for (var i = 0; i < setCardsIndices.length; i++) {
+            if (setCardsIndices[i].join() == userCardsString) {
+                console.log("That's a set!");
+                for (var k = 0; k < 3; k++) {
+                    var replacementCard = deck[Math.floor(Math.random() * deck.length)];
+                    var replacementCardDeckIndex = deck.indexOf(replacementCard);
+                    playingCards.splice(userCards[k], 1);
+                    replacementCard.index = userCards[k];
+                    replacementCard.highlight = false;
+                    playingCards.push(replacementCard);
+                    console.log(userCards[k]);
+                    document.getElementById(userCards[k]).innerHTML = replacementCard.image();
+                    deck.splice(replacementCardDeckIndex, 1);
+                }
             }
         }
+    console.log("nope!");
     resetAllHighlights();
-    console.log("nope!")
 }
 
 

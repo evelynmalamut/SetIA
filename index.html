@@ -3,16 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <title>Evie's Game of Set</title>
-    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="schools.js"></script>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
+    <div id="directions">
+        Directions: A SET is three cards where each feature, when looked at individually, is either all the same OR all different.
+        Each card contains four features: color (red, purple or green),
+        shape (oval, squiggle or diamond), number (one, two or three) and shading (solid, striped or outlined).
+        If you do not see a set, you can add more cards by clicking the button "add more cards". Once you are ready to play, select the play button
+    </div>
 
 <button onclick="add3More()" id="3CardButton">add more cards</button>
-<button onclick="checkClickedSetpt1()">check set 1</button>
+<button onclick="checkClickedSetpt1()" id="checkSetButton1">check set 1</button>
 <button onclick="checkClickedSetpt2()" id="checkSetButton">check set 2</button>
 
 <table id="9cardTable" cellspacing="13" cellpadding="13">
