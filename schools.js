@@ -164,23 +164,32 @@ function checkClickedSetpt2() {
     }
     userCards.sort(function(a, b){return a-b});
     var userCardsString = userCards.join();
+        var found =true;
         for (var i = 0; i < setCardsIndices.length; i++) {
-            if (setCardsIndices[i].join() == userCardsString) {
+            if (setCardsIndices[i].join() == userCardsString && found) {
                 console.log("That's a set!");
+                found = false;
                 for (var k = 0; k < 3; k++) {
                     var replacementCard = deck[Math.floor(Math.random() * deck.length)];
                     var replacementCardDeckIndex = deck.indexOf(replacementCard);
+                    userCards[k].index = -100;
                     playingCards.splice(userCards[k], 1);
                     replacementCard.index = userCards[k];
+                    console.log("here s replacement cards");
+                    console.log(replacementCard);
                     replacementCard.highlight = false;
                     playingCards.push(replacementCard);
+                    console.log(playingCards);
                     console.log(userCards[k]);
                     document.getElementById(userCards[k]).innerHTML = replacementCard.image();
                     deck.splice(replacementCardDeckIndex, 1);
+                    checkSet_pt1();
                 }
             }
+            else if (found) {
+                console.log("nope!")
+            }
         }
-    console.log("nope!");
     resetAllHighlights();
 }
 
