@@ -120,7 +120,6 @@ function checkSet_pt2(a,b,c) {
         (a.shape !== b.shape) && (b.shape !== c.shape) && (a.shape !== c.shape))) {
             return false
         }
-        console.log("Set!");
         console.log(a.index);
         console.log(b.index);
         console.log(c.index);
@@ -145,6 +144,8 @@ function checkClickedSetpt1() {
         selectedCard.toggleHighlight();
         console.log(selectedCard.index);
     });
+    $("#checkSetButton1").hide('fast');
+    $("#3CardButton").hide('fast');
 }
 
 function findCardById(id) {
@@ -159,40 +160,54 @@ function findCardById(id) {
 function checkClickedSetpt2() {
     for (var j = 0; j < playingCards.length; j++) {
         if (playingCards[j].highlight == true) {
-            userCards.push(playingCards[j].index)
+            userCards.push(playingCards[j].index);
+            // console.log("usercards are");
+            // console.log(userCards);
         }
     }
     userCards.sort(function(a, b){return a-b});
     var userCardsString = userCards.join();
-        var found =true;
-        for (var i = 0; i < setCardsIndices.length; i++) {
-            if (setCardsIndices[i].join() == userCardsString && found) {
-                console.log("That's a set!");
-                found = false;
-                for (var k = 0; k < 3; k++) {
-                    var replacementCard = deck[Math.floor(Math.random() * deck.length)];
-                    var replacementCardDeckIndex = deck.indexOf(replacementCard);
-                    userCards[k].index = -100;
-                    playingCards.splice(userCards[k], 1);
-                    replacementCard.index = userCards[k];
-                    console.log("here s replacement cards");
-                    console.log(replacementCard);
-                    replacementCard.highlight = false;
-                    playingCards.push(replacementCard);
-                    console.log(playingCards);
-                    console.log(userCards[k]);
-                    document.getElementById(userCards[k]).innerHTML = replacementCard.image();
-                    deck.splice(replacementCardDeckIndex, 1);
-                    checkSet_pt1();
+        var found = true;
+            for (var i = 0; i < setCardsIndices.length; i++) {
+                if (setCardsIndices[i].join() == userCardsString) {
+                    console.log("That's a set!");
+                    for (var h = 0; h < userCards.length; h++) {
+                        $('#' + userCards[h]).fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100);
+                    }
+                    for (var k = 0; k < 3; k++) {
+                            if (deck.length < 3) {
+                                console.log("END OF GAME")
+                            }
+                            var replacementCard = deck[Math.floor(Math.random() * deck.length)];
+                            var replacementCardDeckIndex = deck.indexOf(replacementCard);
+                            playingCards.splice(userCards[k], 1);
+                            replacementCard.index = userCards[k];
+                            replacementCard.highlight = false;
+                            playingCards.push(replacementCard);
+                            playingCards.sort(compare);
+                            // console.log(playingCards);
+                            // console.log(userCards[k]);
+                            document.getElementById(replacementCard.index).innerHTML = replacementCard.image();
+                            deck.splice(replacementCardDeckIndex, 1);
+                            setCardsIndices = [];
+                        }
+                    }
+                else{
+                        console.log("nope!");
+                    }
                 }
-            }
-            else if (found) {
-                console.log("nope!")
-            }
-        }
+    checkSet_pt1();
     resetAllHighlights();
+    userCards.splice(0,3);
 }
 
+function compare(a,b) {
+    if (a.index < b.index)
+        return -1;
+    if (a.index > b.index)
+        return 1;
+    return 0;
+}
 
 function resetAllHighlights() {
     for(var c = 0; c < playingCards.length; c++) {
@@ -200,7 +215,6 @@ function resetAllHighlights() {
     }
 }
 
-//fade in and fade out cards
 
 //get a set and cards blink yellow and confetti
 
