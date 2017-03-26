@@ -171,6 +171,7 @@ function checkClickedSetpt2() {
             for (var i = 0; i < setCardsIndices.length; i++) {
                 if (setCardsIndices[i].join() == userCardsString) {
                     console.log("That's a set!");
+                    //document.getElementById("response").innerText = "That's a set!";
                     for (var h = 0; h < userCards.length; h++) {
                         $('#' + userCards[h]).fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100);
                     }
@@ -215,16 +216,14 @@ function resetAllHighlights() {
     }
 }
 
-
-//get a set and cards blink yellow and confetti
-
-//if dont get set then call them stupid butt (and blink red)
-
 //get rid of buttons
 
 //add instructions
 
 //write up IA
 
-//when you get to end of deck (say end of game)
+//when you get to end of deck (say end of game) and reload (see hangman project)
 
+//start with __ points, get set right, win points, get set wrong lose points
+
+//if they get a set tell them, if dont get set then call them stupid butt (and blink red)
