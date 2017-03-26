@@ -167,7 +167,6 @@ function checkClickedSetpt2() {
     }
     userCards.sort(function(a, b){return a-b});
     var userCardsString = userCards.join();
-        var found = true;
             for (var i = 0; i < setCardsIndices.length; i++) {
                 if (setCardsIndices[i].join() == userCardsString) {
                     console.log("That's a set!");
