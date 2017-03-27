@@ -167,16 +167,20 @@ function checkClickedSetpt2() {
     }
     userCards.sort(function(a, b){return a-b});
     var userCardsString = userCards.join();
+    var found = false;
             for (var i = 0; i < setCardsIndices.length; i++) {
                 if (setCardsIndices[i].join() == userCardsString) {
                     console.log("That's a set!");
-                    //document.getElementById("response").innerText = "That's a set!";
+                    found = true;
                     for (var h = 0; h < userCards.length; h++) {
                         $('#' + userCards[h]).fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100);
                     }
                     for (var k = 0; k < 3; k++) {
                             if (deck.length < 3) {
-                                console.log("END OF GAME")
+                                document.getElementById("checkButton").innerHTML = "Reload";
+                                $("#checkButton").click(function() {
+                                    location.reload();
+                                });
                             }
                             var replacementCard = deck[Math.floor(Math.random() * deck.length)];
                             var replacementCardDeckIndex = deck.indexOf(replacementCard);
@@ -192,13 +196,21 @@ function checkClickedSetpt2() {
                             setCardsIndices = [];
                         }
                     }
-                else{
-                        console.log("nope!");
-                    }
                 }
+    if(!found) {
+        for (var m = 0; m < userCards.length; m++) {
+            $('#' + userCards[m]).addClass('lowlight');
+        }
+        for (var z = 0; z < playingCards.length; z++) {
+                playingCards[z].highlight = false;
+                // console.log("usercards are");
+                // console.log(userCards);
+            }
+        console.log("Nope!");
+    }
     checkSet_pt1();
-    resetAllHighlights();
-    userCards.splice(0,3);
+    setTimeout(resetAllHighlights(), 3000);
+    userCards = [];
 }
 
 function compare(a,b) {
@@ -212,6 +224,7 @@ function compare(a,b) {
 function resetAllHighlights() {
     for(var c = 0; c < playingCards.length; c++) {
         $('#' + c).removeClass('highlight');
+        $('#' + c).removeClass('lowlight');
     }
 }
 

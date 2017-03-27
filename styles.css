@@ -11,3 +11,7 @@ td {
 .highlight {
     box-shadow: 0 0 20px #FFD700;
 }
+
+.lowlight {
+    box-shadow: 0 0 20px #ff0200;
+}
