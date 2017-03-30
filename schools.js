@@ -97,12 +97,6 @@ function checkSet_pt1() {
                     }
                 }
             }
-    // if (setCardsIndices.length == 0) {
-    //     document.getElementById("checkButton").innerHTML = "No sets. Tap here to reload.";
-    //     $("#checkButton").click(function() {
-    //         location.reload();
-    //     });
-    // }
         }
 
 $(document).ready(function() {
@@ -167,8 +161,6 @@ function checkClickedSetpt2() {
     for (var j = 0; j < playingCards.length; j++) {
         if (playingCards[j].highlight == true) {
             userCards.push(playingCards[j].index);
-            // console.log("usercards are");
-            // console.log(userCards);
         }
     }
     userCards.sort(function(a, b){return a-b});
@@ -183,12 +175,12 @@ function checkClickedSetpt2() {
                         $('#' + userCards[h]).fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100);
                     }
                     for (var k = 0; k < 3; k++) {
-                            // if (deck.length < 3) {
-                            //     document.getElementById("checkButton").innerHTML = "Reload";
-                            //     $("#checkButton").click(function() {
-                            //         location.reload();
-                            //     });
-                            // }
+                            if (deck.length < 3) {
+                                document.getElementById("checkButton").innerHTML = "Reload";
+                                $("#checkButton").click(function() {
+                                    location.reload();
+                                });
+                            }
                             var replacementCard = deck[Math.floor(Math.random() * deck.length)];
                             var replacementCardDeckIndex = deck.indexOf(replacementCard);
                             playingCards.splice(userCards[k], 1);
@@ -196,8 +188,6 @@ function checkClickedSetpt2() {
                             replacementCard.highlight = false;
                             playingCards.push(replacementCard);
                             playingCards.sort(compare);
-                            // console.log(playingCards);
-                            // console.log(userCards[k]);
                             document.getElementById(replacementCard.index).innerHTML = replacementCard.image();
                             deck.splice(replacementCardDeckIndex, 1);
                             setCardsIndices = [];
@@ -211,8 +201,6 @@ function checkClickedSetpt2() {
         }
         for (var z = 0; z < playingCards.length; z++) {
                 playingCards[z].highlight = false;
-                // console.log("usercards are");
-                // console.log(userCards);
             }
         console.log("Nope!");
     }
@@ -236,15 +224,3 @@ function resetAllHighlights() {
         $('#' + c).removeClass('greenlight');
     }
 }
-
-//get rid of buttons
-
-//add instructions
-
-//write up IA
-
-//when you get to end of deck (say end of game) and reload (see hangman project)
-
-//start with __ points, get set right, win points, get set wrong lose points
-
-//if they get a set tell them, if dont get set then call them stupid butt (and blink red)
